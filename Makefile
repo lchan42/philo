@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/06/20 15:06:02 by lchan            ###   ########.fr        #
+#    Updated: 2022/06/20 21:01:33 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ LIBPATH = ./libraries/libft
 LIB	= ./libraries/libft/libft.a
 
 SRCS	=	main.c\
-			ph_init_data.c
+			ph_init_data.c\
+			ph_visual.c
+
 SRCSBONUS =
 
 NAME		= philo
@@ -30,7 +32,7 @@ OBJSBONUS	= ${SRCSBONUS:.c=.o}
 CC			= gcc
 MAKE		= make
 RM			= rm -f
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g3
 DEBUGFLAGS	= -g3 -fsanitize=address
 
 

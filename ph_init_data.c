@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/20 17:39:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/06/20 22:17:41 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ static int	__entrycheck(char *str)
 	if (!str)
 		return (NULL_STR_CASE);
 	i = -1;
+	while (*str == '0' && str + 1)
+		str++;
 	while (str[++i])
-		if (str[i] <= '0' && str[i] >= '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (NOT_DIGIT);
 	if (i > 11 || ft_atol(str) > INT_MAX)
 		return (OVERFLOW);
@@ -54,7 +56,8 @@ static int	__is_error(int error_code)
 	[INVALID_NBR_ARG] = "unvalid nbr of argument",
 	[NULL_STR_CASE] = "one of the argument is a null byte",
 	[NOT_DIGIT] = "argument must be only digit",
-	[OVERFLOW] = "argument is too big (overflow)"
+	[OVERFLOW] = "argument is too big (overflow)",
+	[CANT_SET_START] = "gettimeofday is not working properly"
 	};
 
 	if (error_code == 0)
@@ -66,6 +69,19 @@ static int	__is_error(int error_code)
 	}
 }
 
+static int __set_starting_time(t_data *data)
+{
+	(void) data;
+	struct timeval c_time;
+
+	if (gettimeofday(&c_time, NULL) == -1)
+		return (-1);
+	else
+	{
+		data->start_time = (c_time.tv_sec *1000 + c_time.tv_usec / 1000);
+		return (0);
+	}
+}
 
 int	__init_data(int ac, char **av, t_data *data)
 {
@@ -75,15 +91,14 @@ int	__init_data(int ac, char **av, t_data *data)
 	i = -1;
 	struct_address = (int*)data;
 	if (ac < 4 || ac > 5)
-	{
-		__is_error(INVALID_NBR_ARG);
-		return (-1);
-	}
+		return (__is_error(INVALID_NBR_ARG));
 	while (++i < ac)
 	{
-		if (__is_error(__entrycheck(av[i])) > 0)
+		if (__is_error(__entrycheck(av[i])) < 0)
 			return (-1);
 		*(struct_address + i) = (int)ft_atol(av[i]);
 	}
+	if (__set_starting_time(data))
+		return (__is_error(CANT_SET_START));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/20 17:36:32 by lchan            ###   ########.fr       */
+/*   Updated: 2022/06/20 22:11:56 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ enum e_err_parsing{
 	INVALID_NBR_ARG = 1,
 	NULL_STR_CASE,
 	NOT_DIGIT,
-	OVERFLOW
+	OVERFLOW,
+	CANT_SET_START
 };
 
 enum e_error{
