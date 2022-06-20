@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/20 22:17:41 by lchan            ###   ########.fr       */
+/*   Updated: 2022/06/20 22:28:07 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static int	__is_error(int error_code)
 
 static int __set_starting_time(t_data *data)
 {
-	(void) data;
 	struct timeval c_time;
 
 	if (gettimeofday(&c_time, NULL) == -1)
@@ -98,6 +97,8 @@ int	__init_data(int ac, char **av, t_data *data)
 			return (-1);
 		*(struct_address + i) = (int)ft_atol(av[i]);
 	}
+	if (i < 5)
+		*(struct_address + i) = (long long) -1;
 	if (__set_starting_time(data))
 		return (__is_error(CANT_SET_START));
 	return (0);
