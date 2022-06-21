@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/06/20 21:01:33 by lchan            ###   ########.fr        #
+#    Updated: 2022/06/21 16:57:19 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJSBONUS	= ${SRCSBONUS:.c=.o}
 CC			= gcc
 MAKE		= make
 RM			= rm -f
-CFLAGS		= -Wall -Werror -Wextra -g3
+CFLAGS		= -Wall -Werror -Wextra -g3 -pthread
 DEBUGFLAGS	= -g3 -fsanitize=address
 
 

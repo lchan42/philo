@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/20 22:28:07 by lchan            ###   ########.fr       */
+/*   Updated: 2022/06/21 16:58:03 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static int	__is_error(int error_code)
 	[NULL_STR_CASE] = "one of the argument is a null byte",
 	[NOT_DIGIT] = "argument must be only digit",
 	[OVERFLOW] = "argument is too big (overflow)",
-	[CANT_SET_START] = "gettimeofday is not working properly"
+	[TOO_MUCH_PHILO] = "there is too much philosophers",
+	[TIME_SET_ERR] = "gettimeofday is not working properly"
 	};
 
 	if (error_code == 0)
@@ -97,9 +98,11 @@ int	__init_data(int ac, char **av, t_data *data)
 			return (-1);
 		*(struct_address + i) = (int)ft_atol(av[i]);
 	}
+	if (data->philo_nbr > 200)
+		return (__is_error(TOO_MUCH_PHILO));
 	if (i < 5)
 		*(struct_address + i) = (long long) -1;
 	if (__set_starting_time(data))
-		return (__is_error(CANT_SET_START));
+		return (__is_error(TIME_SET_ERR));
 	return (0);
 }
