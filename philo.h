@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/21 16:56:22 by lchan            ###   ########.fr       */
+/*   Updated: 2022/06/21 20:02:06 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ typedef struct s_data{
 	int			ttsleep;
 	int			tteat;
 	int			eat_rqrmt;
+	int			*fork_tab;
 	long long	start_time;
 }	t_data;
 
 typedef struct s_philo{
-	int		id;
-	int		status;
-	int		*fork;
+	int			id;
+	int			status;
+	long long	prev_lunch;
 	t_data	*data;
 }	t_philo;
 
@@ -66,11 +67,6 @@ enum e_err_parsing{
 	TIME_SET_ERR
 };
 
-enum e_error{
-	ERR_USLEEP,
-	ERR_GETTIME
-};
-
 enum e_status{
 	ALIVE,
 	DEAD,
@@ -78,9 +74,8 @@ enum e_status{
 	SLEEP
 };
 
-
 //visual
 void	__visual_print_data(t_data *data);
 int	__init_data(int ac, char **av, t_data *data);
-
+void	routine(void);
 #endif

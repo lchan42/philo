@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/06/21 16:57:19 by lchan            ###   ########.fr        #
+#    Updated: 2022/06/21 19:58:36 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ LIB	= ./libraries/libft/libft.a
 
 SRCS	=	main.c\
 			ph_init_data.c\
+			ph_routine.c\
 			ph_visual.c
 
 SRCSBONUS =
@@ -32,7 +33,7 @@ OBJSBONUS	= ${SRCSBONUS:.c=.o}
 CC			= gcc
 MAKE		= make
 RM			= rm -f
-CFLAGS		= -Wall -Werror -Wextra -g3 -pthread
+CFLAGS		= -Wall -Werror -Wextra -g3 -pthread -fsanitize=thread
 DEBUGFLAGS	= -g3 -fsanitize=address
 
 
