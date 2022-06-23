@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/21 20:02:06 by lchan            ###   ########.fr       */
+/*   Updated: 2022/06/23 19:35:23 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,16 @@ typedef struct s_data{
 	int			ttsleep;
 	int			tteat;
 	int			eat_rqrmt;
-	int			*fork_tab;
 	long long	start_time;
+	//mutex *tab of fork
 }	t_data;
 
 typedef struct s_philo{
 	int			id;
 	int			status;
 	long long	prev_lunch;
+	//mutex for right fork
+	//mutex for left fork
 	t_data	*data;
 }	t_philo;
 
