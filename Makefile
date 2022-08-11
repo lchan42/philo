@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/06/21 19:58:36 by lchan            ###   ########.fr        #
+#    Updated: 2022/08/11 12:17:02 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CC			= gcc
 MAKE		= make
 RM			= rm -f
 CFLAGS		= -Wall -Werror -Wextra -g3 -pthread -fsanitize=thread
-DEBUGFLAGS	= -g3 -fsanitize=address
+DEBUGFLAGS	= -g3 -fsanitize=thread
 
 
 all:		${NAME}
