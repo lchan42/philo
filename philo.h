@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/23 19:35:23 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/11 18:55:44 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 #include <pthread.h>
 
 #define INT_MAX 2147483647
+
+/**************** things to do ******************
+ * fork table of mutex, and mutex for each philo arms;
+ * test with printf that has to be done in order;
+ * */
+
 
 
 /*************************************
@@ -55,8 +61,8 @@ typedef struct s_philo{
 	int			id;
 	int			status;
 	long long	prev_lunch;
-	//mutex for right fork
-	//mutex for left fork
+	//mutex for right fork	(*)
+	//mutex for left fork	(*)
 	t_data	*data;
 }	t_philo;
 
