@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ph_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: luc_chan <luc_chan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/06/21 20:02:37 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/12 13:07:44 by luc_chan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ int	main (int ac, char **av)
 
 	if (__init_data(ac -1, av + 1, &data) == -1)
 		return (-1);
+	if (__set_table(&data) == -1)
+		return (-1);
+	__visual_print_data(&data);
+	__table_free(&data);
+	printf("end of main process\n");
+	//free all
 	//if (__init_philo() == -1)
 	//	return (-1);
-	//__visual_print_data(&data);
+
 	// if (pthread_create(&first_thread, NULL,(void *) &routine, NULL))
 	// 	printf ("error pthread\n");
 	//pthread_join(first_thread, NULL);

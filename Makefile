@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
+#    By: luc_chan <luc_chan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/08/11 12:17:02 by lchan            ###   ########.fr        #
+#    Updated: 2022/08/12 12:35:36 by luc_chan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@
 LIBPATH = ./libraries/libft
 LIB	= ./libraries/libft/libft.a
 
-SRCS	=	main.c\
+SRCS	=	ph_main.c\
 			ph_init_data.c\
+			ph_set_table.c\
 			ph_routine.c\
+			ph_free.c\
 			ph_visual.c
 
 SRCSBONUS =

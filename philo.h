@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: luc_chan <luc_chan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/11 18:55:44 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/12 13:10:41 by luc_chan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <unistd.h>
@@ -21,6 +22,7 @@
 #include <pthread.h>
 
 #define INT_MAX 2147483647
+#define	INIT_SIZE 2
 
 /**************** things to do ******************
  * fork table of mutex, and mutex for each philo arms;
@@ -48,22 +50,22 @@
 ************************************/
 
 typedef struct s_data{
-	int			philo_nbr;
-	int			ttdie;
-	int			ttsleep;
-	int			tteat;
-	int			eat_rqrmt;
-	long long	start_time;
-	//mutex *tab of fork
+	int				philo_nbr;
+	int				ttdie;
+	int				ttsleep;
+	int				tteat;
+	int				eat_rqrmt;
+	long long		start_time;
+	pthread_mutex_t	*table_set;
 }	t_data;
 
 typedef struct s_philo{
-	int			id;
-	int			status;
-	long long	prev_lunch;
-	//mutex for right fork	(*)
-	//mutex for left fork	(*)
-	t_data	*data;
+	int				id;
+	int				status;
+	long long		prev_lunch;
+	pthread_mutex_t	*rgt;
+	pthread_mutex_t	*lft;
+	t_data			*data;
 }	t_philo;
 
 enum e_err_parsing{
@@ -82,8 +84,25 @@ enum e_status{
 	SLEEP
 };
 
+/******** ********/
 //visual
+/******** ********/
 void	__visual_print_data(t_data *data);
-int	__init_data(int ac, char **av, t_data *data);
+
+/******** main struct init ********/
+int		__init_data(int ac, char **av, t_data *data);
+
+/******** table set ********/
+int	__set_table(t_data *data);
+
+/******** philo routine ********/
 void	routine(void);
+
+/******** free functions ********/
+void	__table_free(t_data *data);
+
 #endif
+
+
+// 12/08 objf -> infinit philo loop taking fork
+// I m not sure about where to put my thread. in Philo struct or main struct?
