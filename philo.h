@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luc_chan <luc_chan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/12 13:10:41 by luc_chan         ###   ########.fr       */
+/*   Updated: 2022/08/13 13:13:24 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <pthread.h>
 
 #define INT_MAX 2147483647
-#define	INIT_SIZE 2
+#define	INIT_SIZE 3
 
 /**************** things to do ******************
  * fork table of mutex, and mutex for each philo arms;
@@ -57,14 +57,16 @@ typedef struct s_data{
 	int				eat_rqrmt;
 	long long		start_time;
 	pthread_mutex_t	*table_set;
+	struct s_philo	*philo_tab;
 }	t_data;
 
 typedef struct s_philo{
 	int				id;
 	int				status;
 	long long		prev_lunch;
+	pthread_t		ph_thread;
 	pthread_mutex_t	*rgt;
-	pthread_mutex_t	*lft;
+ 	pthread_mutex_t	*lft;
 	t_data			*data;
 }	t_philo;
 
@@ -81,7 +83,8 @@ enum e_status{
 	ALIVE,
 	DEAD,
 	EAT,
-	SLEEP
+	SLEEP,
+	THINK
 };
 
 /******** ********/
@@ -106,3 +109,7 @@ void	__table_free(t_data *data);
 
 // 12/08 objf -> infinit philo loop taking fork
 // I m not sure about where to put my thread. in Philo struct or main struct?
+
+
+
+// after coffee : make a visual for forks and philosophers (see who is holding who s fork)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: luc_chan <luc_chan@student.42.fr>          +#+  +:+       +#+         #
+#    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/08/12 12:35:36 by luc_chan         ###   ########.fr        #
+#    Updated: 2022/08/13 12:12:39 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,8 @@ OBJSBONUS	= ${SRCSBONUS:.c=.o}
 CC			= gcc
 MAKE		= make
 RM			= rm -f
-CFLAGS		= -Wall -Werror -Wextra -g3 -pthread -fsanitize=thread
+CFLAGS		= -Wall -Werror -Wextra -g3 -pthread
 DEBUGFLAGS	= -g3 -fsanitize=thread
-
 
 all:		${NAME}
 
