@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:13:06 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 18:55:13 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 20:27:32 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	__visual(t_data *data, int opt)
 	__visual_funk[DATA] = &__visual_print_data;
 	__visual_funk[TABLE_SET] = &__visual_print_table_set;
 	__visual_funk[PHILO_TAB] = &__visual_print_philo_tab;
-
 	if (opt >= 0)
 		__visual_funk[opt](data, data->philo_nbr);
 	else

@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 19:00:39 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 21:42:45 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ enum e_visual{ //have to delete this enum afterwards
 };
 
 /******** ********/
-//visual
-/******** ********/
+
+/******** visual ********/
 void	__visual_print_data(t_data *data, int nbr);
 void	__visual(t_data *data, int opt);
 
@@ -106,10 +106,13 @@ void	__visual(t_data *data, int opt);
 int		__init_data(int ac, char **av, t_data *data);
 
 /******** table set ********/
-int	__set_table(t_data *data);
+int		__set_table(t_data *data);
 
 /******** philo routine ********/
-void	routine(void);
+void	*__routine(void *philo_void);
+
+/******** utils ********/
+int		__is_even_nbr(int n);
 
 /******** free functions ********/
 void	__table_free(t_data *data);
@@ -123,4 +126,10 @@ void	__ultimate_free(t_data *data);
 
 
 
-// after coffee : make a visual for forks and philosophers (see who is holding who s fork)
+// after coffee : make a visual for forks and philosophers (see who is holding who s fork)DONE
+
+
+
+//figure out exactly how threads are working;
+//try to figure out how to deal with errors from __routine.
+

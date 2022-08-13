@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/08/13 15:06:18 by lchan            ###   ########.fr        #
+#    Updated: 2022/08/13 21:09:34 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS	=	ph_main.c\
 			ph_set_table.c\
 			ph_routine.c\
 			ph_free.c\
+			ph_utils.c\
 			ph_visual.c
 
 SRCSBONUS =

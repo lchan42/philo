@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/13 18:52:41 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 20:37:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	__set_philo(t_data *data, t_philo *philo, int index)
 		i = 0;
 	else
 		i = index + 1;
-	philo->id = index + 1;
+	philo->id = index;
 	philo->status = WAITING;
 	philo->prev_lunch = 0;
 	philo->rgt = data->table_set + index;
