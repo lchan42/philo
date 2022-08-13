@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 21:24:42 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 21:58:47 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,6 @@ int	main (int ac, char **av)
 	//pthread_join(first_thread, NULL);
 	return (0);
 }
+
+
+//https://stackoverflow.com/questions/30585375/what-is-the-type-of-pthread-mutex-t

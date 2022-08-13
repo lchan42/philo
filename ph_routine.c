@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 19:31:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 21:52:54 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 22:19:50 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*__routine(void *philo)
 {
-	//if (__is_even_nbr(((t_philo *)philo)->id))
-	//	usleep(1000);
+	if ((((t_philo *)philo)->id + 1 == ((t_philo *)philo)->data->philo_nbr))
+		usleep(1000);
 	while (1)
 		if (((t_philo *)philo)->rgt->__data.__lock == 0 && ((t_philo *)philo)->lft->__data.__lock == 0)
 			break;
