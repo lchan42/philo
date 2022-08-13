@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/13 15:41:17 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 15:57:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	__set_philo(t_data *data, t_philo *philo, int index)
 	int	i;
 
 	if (index == data->philo_nbr - 1)
-		i = data->philo_nbr - 1;
+		i = 0;
 	else
 		i = index + 1;
 	philo->id = index + 1;
