@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 13:13:24 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 15:50:49 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 #define INT_MAX 2147483647
 #define	INIT_SIZE 3
+#define	FREE_FUNK 2
 
 /**************** things to do ******************
  * fork table of mutex, and mutex for each philo arms;
@@ -49,7 +50,7 @@
  * int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
 ************************************/
 
-typedef struct s_data{
+typedef struct s_data{	// neeed to add a time to think
 	int				philo_nbr;
 	int				ttdie;
 	int				ttsleep;
@@ -80,6 +81,7 @@ enum e_err_parsing{
 };
 
 enum e_status{
+	WAITING,
 	ALIVE,
 	DEAD,
 	EAT,
@@ -87,10 +89,18 @@ enum e_status{
 	THINK
 };
 
+enum e_visual{ //have to delete this enum afterwards
+	ALL = -1,
+	DATA,
+	TABLE_SET,
+	PHILO_TAB
+};
+
 /******** ********/
 //visual
 /******** ********/
-void	__visual_print_data(t_data *data);
+void	__visual_print_data(t_data *data, int nbr);
+void	__visual(t_data *data, int opt);
 
 /******** main struct init ********/
 int		__init_data(int ac, char **av, t_data *data);
@@ -103,6 +113,7 @@ void	routine(void);
 
 /******** free functions ********/
 void	__table_free(t_data *data);
+void	__ultimate_free(t_data *data);
 
 #endif
 

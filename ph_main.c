@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 12:13:44 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 15:50:42 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main (int ac, char **av)
 		return (-1);
 	if (__set_table(&data) == -1)
 		return (-1);
-	__visual_print_data(&data);
-	__table_free(&data);
+	__visual(&data, ALL);
+	__ultimate_free(&data);
 	printf("end of main process\n");
 	//free all
 	//if (__init_philo() == -1)

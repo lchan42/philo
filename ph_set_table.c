@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/13 13:12:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 15:41:17 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	__init_mutex(t_data *data, int nbr)
 	while (nbr--)
 		if (pthread_mutex_init(&(data->table_set[nbr]), NULL))
 			return (-1);
-	// while (nbr--)
-	// 	printf("init mutex ret = %d\n", pthread_mutex_init(&(data->table_set[nbr]), NULL));
 	return (0);
 }
 
@@ -30,8 +28,6 @@ int	__init_table(t_data *data, int nbr)
 	data->table_set = malloc(sizeof(pthread_mutex_t) * nbr);
 	if (!data->table_set)
 		return (-1);
-	else
-		printf("in ph_set_table.c : table has been set\n");
 	return (0);
 }
 
@@ -40,14 +36,14 @@ int	__set_philo(t_data *data, t_philo *philo, int index)
 	int	i;
 
 	if (index == data->philo_nbr - 1)
-		i = data->philo_nbr;
+		i = data->philo_nbr - 1;
 	else
 		i = index + 1;
 	philo->id = index + 1;
-	philo->status = ALIVE;
+	philo->status = WAITING;
 	philo->prev_lunch = 0;
 	philo->rgt = data->table_set + index;
-	philo->lft = data->table_set + i;
+	philo->lft = data->table_set + i;// if philo is single lft could points towards the same mutex. is it a pb ??
 	philo->data = data;
 	return (0);
 }
@@ -57,7 +53,7 @@ int	__init_philo(t_data *data, int nbr)
 	int	index;
 
 	index = -1;
-	data->philo_tab = malloc(sizeof(pthread_t) * nbr);
+	data->philo_tab = (t_philo*) malloc(sizeof(t_philo) * nbr);
 	if (!data->philo_tab)
 		return (-1);
 	while (++index < nbr)

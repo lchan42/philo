@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ph_init_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luc_chan <luc_chan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/12 12:04:26 by luc_chan         ###   ########.fr       */
+/*   Updated: 2022/08/13 15:25:17 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,7 @@ int	__init_data(int ac, char **av, t_data *data)
 		*(struct_address + i) = (long long) -1;
 	if (__set_starting_time(data))
 		return (__is_error(TIME_SET_ERR));
+	data->table_set = NULL;
+	data->philo_tab = NULL;
 	return (0);
 }

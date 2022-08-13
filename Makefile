@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/08/13 12:12:39 by lchan            ###   ########.fr        #
+#    Updated: 2022/08/13 15:06:18 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ CC			= gcc
 MAKE		= make
 RM			= rm -f
 CFLAGS		= -Wall -Werror -Wextra -g3 -pthread
-DEBUGFLAGS	= -g3 -fsanitize=thread
+DEBUGFLAGS	= -g3 -fsanitize=address
+DEBUGFLAGSTHR = -g3 -fsanitize=thread
 
 all:		${NAME}
 
@@ -47,6 +48,9 @@ $(NAME):	${OBJS}
 
 debug:		${OBJS}
 			${CC} ${DEBUGFLAGS} -o ${NAME} ${OBJS}
+
+debug_thr:	${OBJS}
+			${CC} ${DEBUGFLAGSTHR} -o ${NAME} ${OBJS}
 
 bonus:		${NAME} ${OBJS} ${OBJSBONUS}
 			${AR} ${ARFLAGS} ${NAME} ${OBJSBONUS}

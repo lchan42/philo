@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ph_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luc_chan <luc_chan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:21:16 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/12 13:24:12 by luc_chan         ###   ########.fr       */
+/*   Updated: 2022/08/13 15:52:51 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,40 @@
 
 void	__table_free(t_data *data)
 {
-	//int				tmp;
 	pthread_mutex_t	*end_limit;
 	pthread_mutex_t	*start_limit;
 
 	if (data && data->table_set)
 	{
-		//tmp = data->philo_nbr;
 		start_limit = data->table_set;
 		end_limit = data->table_set + data->philo_nbr;
-		//while (tmp)
-		//	pthread_mutex_destroy(&(data->table_set[tmp--]));
 		while (start_limit < end_limit)
-			printf("destroying mutex ret = %d\n", pthread_mutex_destroy((start_limit++)));
+		{
+			//pthread_mutex_destroy(pthread_mutex_destroy(start_limit++));
+			printf("destroying mutex add = %p ret = %d\n", start_limit, pthread_mutex_destroy((start_limit)));
+			start_limit++;
+		}
 		free(data->table_set);
 		data->table_set = NULL;
 	}
+}
+
+void	__philo_free(t_data *data)
+{
+	if (data && data->philo_tab)
+		free(data->philo_tab);
+}
+
+void	__ultimate_free(t_data *data)
+{
+	int	index;
+
+	index = -1;
+	void ((*__free_funk[FREE_FUNK])(t_data *data));
+
+	__free_funk[0] = &__table_free;
+	__free_funk[1] = &__philo_free;
+
+	while (++index < FREE_FUNK)
+		__free_funk[index](data);
 }
