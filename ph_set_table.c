@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/13 15:57:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 18:52:41 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,10 @@ int	__set_table(t_data *data)
 	__set_table[0] = &__init_table;
 	__set_table[1] = &__init_mutex;
 	__set_table[2] = &__init_philo;
-
 	i = 0;
 	while (i < INIT_SIZE)
-	{
-		if (__set_table[i](data, data->philo_nbr) == -1)
+		if (__set_table[i++](data, data->philo_nbr) == -1)
 			return (i);
-		i++;
-	}
 	return (0);
 }
 

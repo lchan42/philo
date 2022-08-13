@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:13:06 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 15:38:48 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 18:55:13 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	__visual_print_data(t_data *data, int nbr)
 {
 	(void) nbr;
 
-	printf(">>>>>>>>>>>> data: \n");
+	printf(">>>>>>>>>>>> data: <<<<<<<<<<<<\n");
 	printf("nbr_philo:		%d\n", data->philo_nbr);
 	printf("time_to_die:		%d\n", data->ttdie);
 	printf("time_to_sleep:		%d\n", data->ttsleep);
@@ -37,7 +37,7 @@ void	__visual_print_table_set(t_data *data, int nbr)
 	{
 		printf(">>>>>>>>>>>> in table_set : table_set is NULL\n");
 		return ;
-	}printf(">>>>>>>>>>>> table_set: \n");
+	}printf(">>>>>>>>>>>> table_set <<<<<<<<<<<<\n");
 	while (nbr--)
 	{
 		++index;
@@ -56,7 +56,7 @@ void	__visual_print_philo_tab(t_data *data, int nbr)
 	{
 		printf(">>>>>>>>>>>> philo_tab : philo_tab  is NULL\n");
 		return ;
-	} printf(">>>>>>>>>>>> philo_tab: \n");
+	} printf(">>>>>>>>>>>> philo_tab <<<<<<<<<<<<\n");
 	while (nbr--)
 	{
 		++index;

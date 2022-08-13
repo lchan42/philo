@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:21:16 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/13 15:52:51 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/13 18:53:14 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	__ultimate_free(t_data *data)
 
 	__free_funk[0] = &__table_free;
 	__free_funk[1] = &__philo_free;
-
 	while (++index < FREE_FUNK)
 		__free_funk[index](data);
 }
