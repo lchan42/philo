@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 19:31:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 16:12:23 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 20:46:23 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	*__routine(void *philo)
 {
 	if (!__is_even_nbr(((t_philo *)philo)->id))
-		usleep(1000);
+	{
+		((t_philo *)philo)->hp -= 10;
+		usleep(10);
+	}
 	while (1)
 	{
 		if (__eat((t_philo *)philo) == -1)
 			break ;
 		//	__sleep((t_philo *)philo);
 		//	__think((t_philo *)philo);
+		((t_philo *)philo)->hp = ((t_philo *)philo)->data->ttdie * 1000;
 		//	__check_eat_rqmt(t_philo *)philo);
 	}
 	return (philo);

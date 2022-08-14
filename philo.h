@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 19:48:25 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 21:14:12 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ void	__voice_of_death(t_philo *philo);
 /******** utils ********/
 int			__is_even_nbr(int n);
 long long	__timestamp(t_philo *philo, long long now);
+long long	__get_time();
+long long	__voice_time(long long start, long long now);
 int			__check_of_death(t_philo *philo);
 
 /******** free functions ********/
@@ -152,3 +154,8 @@ void	__free_setnull(void **malloc_elem); // not sure it is usefull
 
 //figure out exactly how threads are working;
 //try to figure out how to deal with errors from __routine.
+
+
+
+
+// convert every value in long long (creat a val called bigi)
