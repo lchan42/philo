@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 12:46:17 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 13:34:52 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,65 @@ void	__waiting_list(t_philo *philo)
 	}
 }
 
+
+
+
+
+
+
+/************************ voice *************************/
 void	__voice_of_thefork(t_philo *philo)
 {
-	//	__waiting_list(philo);
 	pthread_mutex_lock(philo->data->the_voice);
-	printf("%d has taken a fork\n", philo->id + 1);
+	printf("%lld %d has taken a fork\n", philo->prev_lunch, philo->id + 1);
 	pthread_mutex_unlock(philo->data->the_voice);
 }
 
 void	__voice_of_death(t_philo *philo)
 {
-	//	__waiting_list(philo);
+	long long	the_time;
+
+	__set_starting_time(&the_time);
 	pthread_mutex_lock(philo->data->the_voice);
-	printf("%d died\n", philo->id + 1);
+	printf("%lld %d died\n", the_time, philo->id + 1);
+	philo->data->blood++;
 	pthread_mutex_unlock(philo->data->the_voice);
 }
 
-void	__eat(t_philo *philo)
+
+
+/************************ utils *************************/
+
+int	__check_of_death(t_philo *philo)
 {
-	__pick_fork(philo);
-	__voice_of_thefork(philo);
-	__drop_fork(philo);
-	if (philo->data->tteat <= philo->data->ttdie)
+	if (philo->data->tteat >= philo->data->ttdie)
 	{
 		usleep(philo->data->ttdie);
 		__voice_of_death(philo);
+		return (-1);
 	}
 	else
+	{
 		usleep(philo->data->tteat);
+		philo->nbr_meal++;
+		return 0;
+	}
+}
+
+
+
+/************************ eat main *************************/
+int	__eat(t_philo *philo)
+{
+	if (philo->data->blood == 0)
+	{
+		__set_starting_time(&(philo->prev_lunch));
+		__pick_fork(philo);
+		__voice_of_thefork(philo);
+		__drop_fork(philo);
+		return (__check_of_death(philo));
+	}
+	return (-1);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 15:25:17 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 13:18:46 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	__is_error(int error_code)
 	}
 }
 
-static int __set_starting_time(t_data *data)
+int __set_starting_time(/*t_data *data*/long long *start_time)
 {
 	struct timeval c_time;
 
@@ -78,7 +78,7 @@ static int __set_starting_time(t_data *data)
 		return (-1);
 	else
 	{
-		data->start_time = (c_time.tv_sec *1000 + c_time.tv_usec / 1000);
+		/*data->*/*start_time = (c_time.tv_sec *1000 + c_time.tv_usec / 1000);
 		return (0);
 	}
 }
@@ -102,8 +102,9 @@ int	__init_data(int ac, char **av, t_data *data)
 		return (__is_error(TOO_MUCH_PHILO));
 	if (i < 5)
 		*(struct_address + i) = (long long) -1;
-	if (__set_starting_time(data))
+	if (__set_starting_time(&data->start_time))
 		return (__is_error(TIME_SET_ERR));
+	data->blood = 0;
 	data->table_set = NULL;
 	data->philo_tab = NULL;
 	return (0);

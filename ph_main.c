@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 12:27:15 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 13:32:11 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ int	__join_philo(t_data *data, int nbr)
 	return (0);
 }
 
+void	__wait_for_blood(t_data *data)
+{
+	while (1)
+		if (data->blood >= 1)
+			break ;
+}
+
 int	main (int ac, char **av)
 {
 	t_data		data;
@@ -49,6 +56,7 @@ int	main (int ac, char **av)
 		return (-1);
 	__visual(&data, DATA);
 	__launch_philo(&data, data.philo_nbr);
+	//__wait_for_blood(&data);
 	__join_philo(&data, data.philo_nbr);
 	__ultimate_free(&data);
 	printf("end of main process\n");

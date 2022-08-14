@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 12:42:31 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 13:35:40 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,20 @@ typedef struct s_data{	// neeed to add a time to think
 	int				ttsleep;
 	int				tteat;
 	int				eat_rqrmt;
+	int				blood;
 	long long		start_time;
 	pthread_mutex_t	*table_set;
 	pthread_mutex_t	*the_voice;
-	
+
 	struct s_philo	*philo_tab;
 }	t_data;
 
 typedef struct s_philo{
 	int				id;
 	int				status;
+	long long		clock;
 	long long		prev_lunch;
+	int				nbr_meal;
 	pthread_t		ph_thread;
 	pthread_mutex_t	*rgt;
  	pthread_mutex_t	*lft;
@@ -115,6 +118,8 @@ void	__visual(t_data *data, int opt);
 
 /******** main struct init ********/
 int		__init_data(int ac, char **av, t_data *data);
+int __set_starting_time(/*t_data *data*/long long *start_time);
+
 
 /******** table set ********/
 int		__set_table(t_data *data);
@@ -127,7 +132,7 @@ void	*__routine(void *philo_void);
 // void	__drop_fork(t_philo *philo);
 // void	__waiting_list(t_philo *philo);
 // void	__voice_of_thefork(t_philo *philo);
-void	__eat(t_philo *philo);
+int		__eat(t_philo *philo);
 
 /******** utils ********/
 int		__is_even_nbr(int n);
