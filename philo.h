@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 13:35:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 16:07:35 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,13 @@ typedef struct s_data{	// neeed to add a time to think
 	long long		start_time;
 	pthread_mutex_t	*table_set;
 	pthread_mutex_t	*the_voice;
-
 	struct s_philo	*philo_tab;
 }	t_data;
 
 typedef struct s_philo{
 	int				id;
 	int				status;
-	long long		clock;
+	long long		watch;
 	long long		prev_lunch;
 	int				nbr_meal;
 	pthread_t		ph_thread;
@@ -135,7 +134,9 @@ void	*__routine(void *philo_void);
 int		__eat(t_philo *philo);
 
 /******** utils ********/
-int		__is_even_nbr(int n);
+int			__is_even_nbr(int n);
+long long	__timestamp(t_philo *philo, long long now);
+int			__check_of_death(t_philo *philo);
 
 /******** free functions ********/
 void	__table_free(t_data *data);
