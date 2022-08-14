@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/13 20:37:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 12:14:52 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	__init_mutex(t_data *data, int nbr)
 	while (nbr--)
 		if (pthread_mutex_init(&(data->table_set[nbr]), NULL))
 			return (-1);
+	if (pthread_mutex_init((data->the_voice), NULL))
+	{
+		__ultimate_free(data);
+		return (-1);
+	}
 	return (0);
 }
 
@@ -28,6 +33,13 @@ int	__init_table(t_data *data, int nbr)
 	data->table_set = malloc(sizeof(pthread_mutex_t) * nbr);
 	if (!data->table_set)
 		return (-1);
+	data->the_voice = malloc(sizeof(pthread_mutex_t));
+	if (!data->the_voice)
+	{
+		free(data->table_set);
+		data->table_set = NULL;
+		return (-1);
+	}
 	return (0);
 }
 

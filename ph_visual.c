@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:13:06 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 20:27:32 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 12:08:20 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	__visual_print_data(t_data *data, int nbr)
 	printf("eat_requirement:	%d\n", data->eat_rqrmt);
 	printf("start+time:		%lld\n", data->start_time);
 	printf("table_set:		%p\n", data->table_set);
+	printf("the_voice:		%p\n", data->the_voice);
 	printf("philo_tab:		%p\n", data->philo_tab);
 
 	printf("\n");

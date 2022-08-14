@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:21:16 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/13 18:53:14 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 12:26:30 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	__table_free(t_data *data)
 		end_limit = data->table_set + data->philo_nbr;
 		while (start_limit < end_limit)
 		{
-			//pthread_mutex_destroy(pthread_mutex_destroy(start_limit++));
-			printf("destroying mutex add = %p ret = %d\n", start_limit, pthread_mutex_destroy((start_limit)));
-			start_limit++;
+			pthread_mutex_destroy((start_limit++));
+			//printf("destroying mutex add = %p ret = %d\n", start_limit, pthread_mutex_destroy((start_limit)));
+			//start_limit++;
 		}
 		free(data->table_set);
 		data->table_set = NULL;
@@ -36,6 +36,15 @@ void	__philo_free(t_data *data)
 {
 	if (data && data->philo_tab)
 		free(data->philo_tab);
+}
+
+void	__free_setnull(void **malloc_elem)
+{
+	if (malloc_elem && *malloc_elem)
+	{
+		free (*malloc_elem);
+		*malloc_elem = NULL;
+	}
 }
 
 void	__ultimate_free(t_data *data)

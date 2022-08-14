@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/13 21:42:45 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 12:42:31 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_data{	// neeed to add a time to think
 	int				eat_rqrmt;
 	long long		start_time;
 	pthread_mutex_t	*table_set;
+	pthread_mutex_t	*the_voice;
+	
 	struct s_philo	*philo_tab;
 }	t_data;
 
@@ -102,6 +104,15 @@ enum e_visual{ //have to delete this enum afterwards
 void	__visual_print_data(t_data *data, int nbr);
 void	__visual(t_data *data, int opt);
 
+
+
+
+
+
+
+
+
+
 /******** main struct init ********/
 int		__init_data(int ac, char **av, t_data *data);
 
@@ -111,12 +122,20 @@ int		__set_table(t_data *data);
 /******** philo routine ********/
 void	*__routine(void *philo_void);
 
+/******** mutexer ********/
+// void	__pick_fork(t_philo *philo);
+// void	__drop_fork(t_philo *philo);
+// void	__waiting_list(t_philo *philo);
+// void	__voice_of_thefork(t_philo *philo);
+void	__eat(t_philo *philo);
+
 /******** utils ********/
 int		__is_even_nbr(int n);
 
 /******** free functions ********/
 void	__table_free(t_data *data);
 void	__ultimate_free(t_data *data);
+void	__free_setnull(void **malloc_elem); // not sure it is usefull
 
 #endif
 
