@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 16:22:44 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 19:50:48 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,15 @@ void	__waiting_list(t_philo *philo)
 	{
 		if (((t_philo *)philo)->rgt->__data.__lock == 1 && ((t_philo *)philo)->lft->__data.__lock == 1)
 			break;
+		else
+		{
+			philo->hp--;
+			if (philo->hp <= 0)
+				__voice_of_death(philo);
+			usleep(1);
+		}
 	}
 }
-
-
-
 
 
 
@@ -83,7 +87,6 @@ long long	__timestamp(t_philo *philo, long long now)
 
 int	__aftermealstatus(t_philo *philo)
 {
-
 	if (philo->data->tteat >= philo->data->ttdie)
 	{
 		usleep(philo->data->ttdie);
@@ -100,20 +103,17 @@ int	__aftermealstatus(t_philo *philo)
 	}
 }
 
-
 /************************ eat main *************************/
 int	__eat(t_philo *philo)
 {
-		__pick_fork(philo);
-		__set_starting_time(&(philo->prev_lunch));
-		__voice_of_thefork(philo);
-		__drop_fork(philo);
-		return (__aftermealstatus(philo));
-	return (-1);
+	int	ret;
+
+	__pick_fork(philo);
+	__set_starting_time(&(philo->prev_lunch));
+	__voice_of_thefork(philo);
+	usleep(philo->data->tteat);
+	__drop_fork(philo);
+	ret = __aftermealstatus(philo);
+	return (__aftermealstatus(philo));
+	//return (-1);
 }
-
-
-
-
-
-

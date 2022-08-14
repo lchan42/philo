@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 16:07:35 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/14 19:48:25 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_data{	// neeed to add a time to think
 typedef struct s_philo{
 	int				id;
 	int				status;
+	long long		hp;
 	long long		watch;
 	long long		prev_lunch;
 	int				nbr_meal;
@@ -110,15 +111,9 @@ void	__visual(t_data *data, int opt);
 
 
 
-
-
-
-
-
 /******** main struct init ********/
 int		__init_data(int ac, char **av, t_data *data);
 int __set_starting_time(/*t_data *data*/long long *start_time);
-
 
 /******** table set ********/
 int		__set_table(t_data *data);
@@ -132,6 +127,10 @@ void	*__routine(void *philo_void);
 // void	__waiting_list(t_philo *philo);
 // void	__voice_of_thefork(t_philo *philo);
 int		__eat(t_philo *philo);
+
+/******** voice ********/
+void	__voice_of_thefork(t_philo *philo);
+void	__voice_of_death(t_philo *philo);
 
 /******** utils ********/
 int			__is_even_nbr(int n);
@@ -149,12 +148,7 @@ void	__free_setnull(void **malloc_elem); // not sure it is usefull
 // 12/08 objf -> infinit philo loop taking fork
 // I m not sure about where to put my thread. in Philo struct or main struct?
 
-
-
 // after coffee : make a visual for forks and philosophers (see who is holding who s fork)DONE
-
-
 
 //figure out exactly how threads are working;
 //try to figure out how to deal with errors from __routine.
-
