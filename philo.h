@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 21:14:12 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/15 16:56:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@
 #define	INIT_SIZE 3
 #define	FREE_FUNK 2
 
-/**************** things to do ******************
- * fork table of mutex, and mutex for each philo arms;
- * test with printf that has to be done in order;
- * */
-
-
-
 /*************************************
  * autorised functions:
  * void *memset(void *s, int c, size_t n);
@@ -48,6 +41,9 @@
  * 						return 0 for success, or -1 for failure (in which case errno is set appropriately).
 
  * int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
+ * to check into a mutex structure philo.rgt.__data.__lock
+ * 		https://stackoverflow.com/questions/30585375/what-is-the-type-of-pthread-mutex-t
+ * valgrind --tool=helgrind to check race conditions
 ************************************/
 
 typedef struct s_data{	// neeed to add a time to think
@@ -70,6 +66,7 @@ typedef struct s_philo{
 	long long		watch;
 	long long		prev_lunch;
 	int				nbr_meal;
+	int				obj_meal;
 	pthread_t		ph_thread;
 	pthread_mutex_t	*rgt;
  	pthread_mutex_t	*lft;
@@ -112,37 +109,38 @@ void	__visual(t_data *data, int opt);
 
 
 /******** main struct init ********/
-int		__init_data(int ac, char **av, t_data *data);
-int __set_starting_time(/*t_data *data*/long long *start_time);
+int			__init_data(int ac, char **av, t_data *data);
+int			__set_starting_time(/*t_data *data*/long long *start_time);
 
 /******** table set ********/
-int		__set_table(t_data *data);
+int			__set_table(t_data *data);
 
 /******** philo routine ********/
-void	*__routine(void *philo_void);
+void		*__routine(void *philo_void);
 
-/******** mutexer ********/
-// void	__pick_fork(t_philo *philo);
-// void	__drop_fork(t_philo *philo);
-// void	__waiting_list(t_philo *philo);
-// void	__voice_of_thefork(t_philo *philo);
-int		__eat(t_philo *philo);
+/******** routune ********/
+int			__eat(t_philo *philo);
+int			__sleep(t_philo *philo);
 
 /******** voice ********/
-void	__voice_of_thefork(t_philo *philo);
-void	__voice_of_death(t_philo *philo);
+void		__voice_of_thefork(t_philo *philo);
+void		__voice_of_sleep(t_philo *philo);
+void		__voice_of_think(t_philo *philo);
+void		__voice_of_death(t_philo *philo);
+int			__lifestatus(t_philo *philo, int time_to);
 
 /******** utils ********/
 int			__is_even_nbr(int n);
+		//utils for time mgmt
 long long	__timestamp(t_philo *philo, long long now);
 long long	__get_time();
 long long	__voice_time(long long start, long long now);
-int			__check_of_death(t_philo *philo);
+int			__waiting_to_speak(t_philo *philo);
 
 /******** free functions ********/
-void	__table_free(t_data *data);
-void	__ultimate_free(t_data *data);
-void	__free_setnull(void **malloc_elem); // not sure it is usefull
+void		__table_free(t_data *data);
+void		__ultimate_free(t_data *data);
+void		 __free_setnull(void **malloc_elem); // not sure it is usefull
 
 #endif
 

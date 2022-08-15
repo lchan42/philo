@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/14 13:18:46 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/15 16:42:56 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int __set_starting_time(/*t_data *data*/long long *start_time)
 		return (-1);
 	else
 	{
-		/*data->*/*start_time = (c_time.tv_sec *1000 + c_time.tv_usec / 1000);
+		*start_time = (c_time.tv_sec *1000 + c_time.tv_usec / 1000);
 		return (0);
 	}
 }
