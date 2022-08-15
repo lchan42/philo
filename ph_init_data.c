@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 16:42:56 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/15 19:51:40 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	__init_data(int ac, char **av, t_data *data)
 		*(struct_address + i) = (long long) -1;
 	if (__set_starting_time(&data->start_time))
 		return (__is_error(TIME_SET_ERR));
-	data->blood = 0;
+	data->blood_switch = 0;
 	data->table_set = NULL;
 	data->philo_tab = NULL;
 	return (0);

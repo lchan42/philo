@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/15 16:51:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/15 19:48:00 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	__set_philo(t_data *data, t_philo *philo, int index)
 	philo->hp = data->ttdie * 1000;
 	philo->prev_lunch = 0;
 	philo->nbr_meal = 0;
-	philo->obj_meal = data->eat_rqrmt != -1;
+	philo->obj_meal = data->eat_rqrmt;
 	philo->rgt = data->table_set + index;
 	philo->lft = data->table_set + i;// if philo is single lft could points towards the same mutex. is it a pb ??
 	philo->data = data;

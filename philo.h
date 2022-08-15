@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 16:56:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/15 19:59:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct s_data{	// neeed to add a time to think
 	int				ttsleep;
 	int				tteat;
 	int				eat_rqrmt;
-	int				blood;
+	int				blood_switch;
+	int				rqrmt_switch;
 	long long		start_time;
 	pthread_mutex_t	*table_set;
 	pthread_mutex_t	*the_voice;
@@ -124,6 +125,7 @@ int			__sleep(t_philo *philo);
 
 /******** voice ********/
 void		__voice_of_thefork(t_philo *philo);
+void		__voice_of_meal(t_philo *philo);
 void		__voice_of_sleep(t_philo *philo);
 void		__voice_of_think(t_philo *philo);
 void		__voice_of_death(t_philo *philo);
@@ -157,3 +159,10 @@ void		 __free_setnull(void **malloc_elem); // not sure it is usefull
 
 
 // convert every value in long long (creat a val called bigi)
+
+
+//
+/**************************
+ * il faut changer check eat rqmt. il doit etre placer dans les mutex;
+ * la variable prev_lunch ne sert a rien
+ * ************************/

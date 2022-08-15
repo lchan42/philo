@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 17:01:22 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/15 19:56:03 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	__waiting_to_speak(t_philo *philo)
 
 int	__lifestatus(t_philo *philo, int time_to)
 {
+	//printf("philo %d hp = %lld\n", philo->id, philo->hp);
 	if (time_to * 1000 >= (int)philo->hp)
 	{
 		usleep(philo->hp);
@@ -42,7 +43,7 @@ int	__lifestatus(t_philo *philo, int time_to)
 	}
 	else
 	{
-		philo->hp -= time_to /** 1000*/;
+		philo->hp -= time_to * 1000;
 		usleep(time_to);
 		return 0;
 	}
@@ -52,10 +53,21 @@ int	__lifestatus(t_philo *philo, int time_to)
 void	__voice_of_thefork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->the_voice);
-	if (philo->data->blood == 0)
+	if (philo->data->blood_switch == 0)
+	{
+		printf("%07lld %d has taken a fork\n",
+		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
+	}
+	pthread_mutex_unlock(philo->data->the_voice);
+}
+
+void	__voice_of_meal(t_philo *philo)
+{
+	pthread_mutex_lock(philo->data->the_voice);
+	if (philo->data->blood_switch == 0)
 	{
 		philo->prev_lunch = (philo->data->ttdie * 1000 - philo->hp) + philo->watch;
-		printf("%lld %d has taken a fork\n",
+		printf("%07lld %d is eating\n",
 		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
 	}
 	pthread_mutex_unlock(philo->data->the_voice);
@@ -64,9 +76,9 @@ void	__voice_of_thefork(t_philo *philo)
 void	__voice_of_sleep(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->the_voice);
-	if (philo->data->blood == 0)
+	if (philo->data->blood_switch == 0)
 	{
-		printf("%lld %d is sleeping\n",
+		printf("%07lld %d is sleeping\n",
 		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
 	}
 	pthread_mutex_unlock(philo->data->the_voice);
@@ -75,9 +87,9 @@ void	__voice_of_sleep(t_philo *philo)
 void	__voice_of_think(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->the_voice);
-	if (philo->data->blood == 0)
+	if (philo->data->blood_switch == 0)
 	{
-		printf("%lld %d is thinking\n",
+		printf("%07lld %d is thinking\n",
 		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
 	}
 	pthread_mutex_unlock(philo->data->the_voice);
@@ -86,11 +98,12 @@ void	__voice_of_think(t_philo *philo)
 void	__voice_of_death(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->the_voice);
-	if (philo->data->blood == 0)
+	if (philo->data->blood_switch == 0)
 	{
-		philo->data->blood++;
+		philo->data->blood_switch++;
 		philo->status = DEAD;
-		printf("%lld %d died\n", __voice_time(philo->data->start_time, __get_time()), philo->id + 1);
+		printf("%lld %d died\n",
+		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
 	}
 	pthread_mutex_unlock(philo->data->the_voice);
 }

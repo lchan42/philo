@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 19:31:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 16:52:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/15 19:57:06 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ void	__think(t_philo *philo)
 	__voice_of_think(philo);
 }
 
-int	__check_eat_rqmt(t_philo *philo)
-{
-	if (philo->nbr_meal >= philo->obj_meal)
-		return (-1);
-	return (0);
-}
+// int	__check_eat_rqmt(t_philo *philo)
+// {
+// 	if (philo->obj_meal >= 0 && philo->nbr_meal == philo->obj_meal)
+// 	return (0);
+// }
 
 void	*__routine(void *philo)
 {
@@ -43,12 +42,10 @@ void	*__routine(void *philo)
 	{
 		if (__eat((t_philo *)philo) == -1)
 			break ;
-	//	if (__check_eat_rqmt((t_philo *)philo) == -1)
-	//		break ;
+		//__check_eat_rqmt((t_philo *)philo);
 		if (__sleep((t_philo *)philo) == -1)
 			break ;
 		__think((t_philo *)philo);
-
 	}
 	return (philo);
 }
