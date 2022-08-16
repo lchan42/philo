@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 19:59:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/16 12:51:04 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 #define INT_MAX 2147483647
 #define	INIT_SIZE 3
 #define	FREE_FUNK 2
+#define FORK_MESS "has taken a fork"
+#define EAT_MESS "is eating"
+#define SLEEP_MESS "is sleeping"
+#define THINK_MESS "is thinking"
+#define DEATH_MESS "died"
 
 /*************************************
  * autorised functions:
@@ -124,6 +129,7 @@ int			__eat(t_philo *philo);
 int			__sleep(t_philo *philo);
 
 /******** voice ********/
+void		__voice(t_philo *philo, char *message);
 void		__voice_of_thefork(t_philo *philo);
 void		__voice_of_meal(t_philo *philo);
 void		__voice_of_sleep(t_philo *philo);
@@ -165,4 +171,7 @@ void		 __free_setnull(void **malloc_elem); // not sure it is usefull
 /**************************
  * il faut changer check eat rqmt. il doit etre placer dans les mutex;
  * la variable prev_lunch ne sert a rien
+ * DONE		la fonction the voice semble pouvoir etre faite avec une seule fonction __voice(t_philo *philo, char *message)
+ * il semble que le time of death est incorrect
+ * reduire le nombre de fonction
  * ************************/

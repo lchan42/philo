@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 20:04:34 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/16 12:52:09 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	__pick_fork(t_philo *philo)
 		pthread_mutex_lock(((t_philo *)philo)->rgt);
 		pthread_mutex_lock(((t_philo *)philo)->lft);
 	}
-	__voice_of_thefork(philo);
+	__voice(philo, FORK_MESS);
+	//__voice_of_thefork(philo);
 }
 
 void	__drop_fork(t_philo *philo)
@@ -88,12 +89,12 @@ int	__eat(t_philo *philo)
 	if (__waiting_to_eat(philo))
 		return (-1);
 	__pick_fork(philo);
-	__voice_of_meal(philo);
+	__voice(philo, EAT_MESS);
+	((t_philo *)philo)->hp = ((t_philo *)philo)->data->ttdie * 1000;
 	ret = __lifestatus(philo, philo->data->tteat);
 	if (ret == 0)
 		//__set_nbr_meal(philo);
 		philo->nbr_meal++;
 	__drop_fork(philo);
-	((t_philo *)philo)->hp = ((t_philo *)philo)->data->ttdie * 1000;
 	return (ret);
 }
