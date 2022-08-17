@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 11:28:07 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 12:31:06 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	__waiting_to_eat(t_philo *philo)
 
 void	__pick_fork(t_philo *philo)
 {
-	if (__is_even_nbr(((t_philo *)philo)->id))
+	if (__is_even_nbr(((t_philo *)philo)->id + 1))
 	{
 		pthread_mutex_lock(((t_philo *)philo)->lft);
 		pthread_mutex_lock(((t_philo *)philo)->rgt);
@@ -51,11 +51,12 @@ void	__pick_fork(t_philo *philo)
 		pthread_mutex_lock(((t_philo *)philo)->lft);
 	}
 	__voice(philo, FORK_MESS);
+	__voice(philo, FORK_MESS);
 }
 
 void	__drop_fork(t_philo *philo)
 {
-	if (__is_even_nbr(((t_philo *)philo)->id))
+	if (__is_even_nbr(((t_philo *)philo)->id + 1))
 	{
 		pthread_mutex_unlock(((t_philo *)philo)->lft);
 		pthread_mutex_unlock(((t_philo *)philo)->rgt);

@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 19:31:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 11:21:33 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 12:16:13 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	__think(t_philo *philo)
 
 void	*__routine(void *philo)
 {
-	if (!__is_even_nbr(((t_philo *)philo)->id))
+	if (!__is_even_nbr(((t_philo *)philo)->id + 1))
 	{
-		((t_philo *)philo)->hp -= 10;
-		usleep(10);
+		((t_philo *)philo)->hp -= 1000;
+		usleep(1000);
 	}
 	while (1)
 	{
@@ -46,8 +46,7 @@ void	*__routine(void *philo)
 		if (__sleep((t_philo *)philo) == -1)
 			break ;
 		__think((t_philo *)philo);
-		printf("philo-> %dlooop\n", ((t_philo *)philo)->id);
-		usleep(10000);
+		//printf("philo-> %dlooop\n", ((t_philo *)philo)->id);
 	}
 	return (philo);
 }
