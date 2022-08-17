@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 16:56:00 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 11:02:34 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	__launch_philo(t_data *data, int nbr)
 	if (nbr)
 	{
 		while (++i < nbr)
-			if(pthread_create(&((data->philo_tab[i]).ph_thread), \
+			if (pthread_create(&((data->philo_tab[i]).ph_thread), \
 			NULL,\
 			&__routine, (void *)&data->philo_tab[i]))
 				return (i);
@@ -48,12 +48,11 @@ int	main (int ac, char **av)
 		return (-1);
 	if (__set_table(&data) == -1)
 		return (-1);
-//	__visual(&data, ALL);
 	__launch_philo(&data, data.philo_nbr);
 	__join_philo(&data, data.philo_nbr);
 	__ultimate_free(&data);
-	//printf("end of main process\n");
 	return (0);
 }
 
+	//__visual(&data, ALL);
 

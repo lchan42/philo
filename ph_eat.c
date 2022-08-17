@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/16 12:52:09 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 11:28:07 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	__waiting_to_eat(t_philo *philo)
 {
 	if (philo->rgt == philo->lft)
 	{
-		usleep(philo->data->ttdie - 100);
+		usleep(philo->hp);
 		__voice_of_death(philo);
 		return (-1) ;
 	}
@@ -27,7 +27,7 @@ int	__waiting_to_eat(t_philo *philo)
 			return (0);
 		else
 		{
-			philo->hp--;
+			philo->hp -= 1000;
 			if (philo->hp <= 0)
 			{
 				__voice_of_death(philo);
@@ -51,7 +51,6 @@ void	__pick_fork(t_philo *philo)
 		pthread_mutex_lock(((t_philo *)philo)->lft);
 	}
 	__voice(philo, FORK_MESS);
-	//__voice_of_thefork(philo);
 }
 
 void	__drop_fork(t_philo *philo)
@@ -68,33 +67,23 @@ void	__drop_fork(t_philo *philo)
 	}
 }
 
-// void	__set_nbr_meal(t_philo *philo)
-// {
-// 	philo->nbr_meal++;
-// 	pthread_mutex_lock(philo->data->the_voice);
-// 	if (philo->data->blood_switch == 0)
-// 	{
-// 		philo->prev_lunch = (philo->data->ttdie * 1000 - philo->hp) + philo->watch;
-// 		printf("%07lld %d is eating\n",
-// 		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
-// 	}
-// 	pthread_mutex_unlock(philo->data->the_voice);
-// }
-
 int	__eat(t_philo *philo)
 {
 	int	ret;
 
-	__set_starting_time(&(philo->watch));
 	if (__waiting_to_eat(philo))
 		return (-1);
 	__pick_fork(philo);
-	__voice(philo, EAT_MESS);
+	if (__voice(philo, EAT_MESS) == -1)
+	{
+		__drop_fork(philo);
+		return (-1);
+	}
 	((t_philo *)philo)->hp = ((t_philo *)philo)->data->ttdie * 1000;
 	ret = __lifestatus(philo, philo->data->tteat);
 	if (ret == 0)
-		//__set_nbr_meal(philo);
 		philo->nbr_meal++;
 	__drop_fork(philo);
+	printf("philo-> %d ret is %d\n", philo->id + 1, ret);
 	return (ret);
 }
