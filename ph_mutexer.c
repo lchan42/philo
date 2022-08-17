@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 19:14:01 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 20:49:21 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	__lifestatus(t_philo *philo, int time_to)
 	}
 	else
 	{
-		philo->hp -= time_to * 999;
-		usleep(time_to * 999);
+		philo->hp -= time_to * 1000;
+		usleep(time_to * 1000);
 		return 0;
 	}
 }
@@ -40,13 +40,13 @@ int	__waiting_to_speak(t_philo *philo)
 			return (0);
 		else
 		{
-			philo->hp -= 1000;
+			philo->hp -= 1;
 			if (philo->hp <= 0)
 			{
 				__voice_of_death(philo);
 				return (-1) ;
 			}
-			usleep(950);
+			usleep(1);
 		}
 	}
 }

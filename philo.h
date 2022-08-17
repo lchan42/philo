@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 19:16:02 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 20:42:29 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define INT_MAX 2147483647
 #define	INIT_SIZE 3
 #define	FREE_FUNK 3
+#define TT_THINK 1
 #define FORK_MESS "has taken a fork"
 #define EAT_MESS "is eating"
 #define SLEEP_MESS "is sleeping"
@@ -181,5 +182,7 @@ void		 __free_setnull(void **malloc_elem); // not sure it is usefull
 
 
 /************
- *
+ * essayer de prendre une fourchette a la fois.(dansle waiting to eat ... )
+ * essayer de mettre le get_time directement dans la structure du philosophe.
  * ****/
+

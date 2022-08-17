@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 19:14:06 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 20:49:07 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	__waiting_to_eat(t_philo *philo)
 			return (0);
 		else
 		{
-			philo->hp -= 1000;
+			philo->hp -= 1;
 			if (philo->hp <= 0)
 			{
 				//printf ("philo ->%d has been sentence to die by __waiting_to_eat\n", philo->id);
 				__voice_of_death(philo);
 				return (-1) ;
 			}
-			usleep(950);
+			usleep(1);
 		}
 	}
 }
