@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 14:51:53 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 19:14:01 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	__lifestatus(t_philo *philo, int time_to)
 		usleep(philo->hp);
 		philo->hp = 0;
 		philo->status = DEAD;
-		philo->data->blood_switch++;
-		printf ("philo ->%d has been sentence to die by lifestatus\n", philo->id);
+		//printf ("philo ->%d has been sentence to die by lifestatus\n", philo->id);
 		__voice_of_death(philo);
 		return (-1);
 	}
@@ -47,7 +46,7 @@ int	__waiting_to_speak(t_philo *philo)
 				__voice_of_death(philo);
 				return (-1) ;
 			}
-			usleep(1000);
+			usleep(950);
 		}
 	}
 }

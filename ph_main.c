@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 14:11:26 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 19:27:56 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ int	__launch_philo(t_data *data, int nbr)
 	i = -1;
 	if (nbr)
 	{
+		data->start_time = __get_time();
 		while (++i < nbr)
+		{
 			if (pthread_create(&((data->philo_tab[i]).ph_thread), \
 			NULL,\
 			&__routine, (void *)&data->philo_tab[i]))
 				return (i);
+			usleep(50);
+		}
 	}
 
 	return (0);

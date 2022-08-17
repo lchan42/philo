@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 14:44:36 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 19:16:02 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_philo{
 	int				id;
 	int				status;
 	long long		hp;
+	int				ttthink;
 	int				nbr_meal;
 	int				obj_meal;
 	pthread_t		ph_thread;
@@ -119,10 +120,6 @@ enum e_visual{ //have to delete this enum afterwards
 /******** visual ********/
 void	__visual_print_data(t_data *data, int nbr);
 void	__visual(t_data *data, int opt);
-
-
-
-
 
 /******** main struct init ********/
 int			__init_data(int ac, char **av, t_data *data);
