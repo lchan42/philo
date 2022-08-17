@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:21:16 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/15 15:13:54 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 14:11:02 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ void	__philo_free(t_data *data)
 		free(data->philo_tab);
 }
 
+void	__voice_mutex_free(t_data *data)
+{
+	if (data && data->the_voice)
+		free(data->the_voice);
+}
+
 void	__free_setnull(void **malloc_elem)
 {
 	if (malloc_elem && *malloc_elem)
@@ -52,6 +58,7 @@ void	__ultimate_free(t_data *data)
 
 	__free_funk[0] = &__table_free;
 	__free_funk[1] = &__philo_free;
+	__free_funk[2] = &__voice_mutex_free;
 	while (++index < FREE_FUNK)
 		__free_funk[index](data);
 }

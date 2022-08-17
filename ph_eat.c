@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 12:31:06 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 15:01:26 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	__waiting_to_eat(t_philo *philo)
 	if (philo->rgt == philo->lft)
 	{
 		usleep(philo->hp);
+		printf ("philo ->%d has been sentence to die by __waiting_to_eat\n", philo->id);
 		__voice_of_death(philo);
 		return (-1) ;
 	}
@@ -30,10 +31,11 @@ int	__waiting_to_eat(t_philo *philo)
 			philo->hp -= 1000;
 			if (philo->hp <= 0)
 			{
+				printf ("philo ->%d has been sentence to die by __waiting_to_eat\n", philo->id);
 				__voice_of_death(philo);
 				return (-1) ;
 			}
-			usleep(1000);
+			usleep(910);
 		}
 	}
 }
@@ -85,6 +87,5 @@ int	__eat(t_philo *philo)
 	if (ret == 0)
 		philo->nbr_meal++;
 	__drop_fork(philo);
-	printf("philo-> %d ret is %d\n", philo->id + 1, ret);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 11:25:58 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 14:44:36 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 #define INT_MAX 2147483647
 #define	INIT_SIZE 3
-#define	FREE_FUNK 2
+#define	FREE_FUNK 3
 #define FORK_MESS "has taken a fork"
 #define EAT_MESS "is eating"
 #define SLEEP_MESS "is sleeping"
@@ -140,6 +140,7 @@ int			__sleep(t_philo *philo);
 
 /******** voice ********/
 int		__voice(t_philo *philo, char *message);
+//int	__voice(t_philo *philo, int time_to, char *message);
 void		__voice_of_death(t_philo *philo);
 int			__lifestatus(t_philo *philo, int time_to);
 

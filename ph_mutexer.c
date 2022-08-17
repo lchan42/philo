@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 11:31:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 14:51:53 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int	__lifestatus(t_philo *philo, int time_to)
 {
-	if (time_to * 1000 >= (int)philo->hp)
+	if (time_to * 1000 >= philo->hp)
 	{
 		usleep(philo->hp);
 		philo->hp = 0;
 		philo->status = DEAD;
+		philo->data->blood_switch++;
+		printf ("philo ->%d has been sentence to die by lifestatus\n", philo->id);
 		__voice_of_death(philo);
 		return (-1);
 	}
 	else
 	{
-		philo->hp -= time_to * 1000;
-		usleep(time_to);
+		philo->hp -= time_to * 999;
+		usleep(time_to * 999);
 		return 0;
 	}
 }
@@ -59,7 +61,7 @@ int	__voice(t_philo *philo, char *message)
 	pthread_mutex_lock(philo->data->the_voice);
 	if (philo->data->blood_switch == 0)
 	{
-		printf("%07lld %d %s\n",
+		printf("%03lld %d %s\n",
 		__voice_time(philo->data->start_time, __get_time()), philo->id + 1,
 		message);
 	}
@@ -71,13 +73,12 @@ int	__voice(t_philo *philo, char *message)
 
 void	__voice_of_death(t_philo *philo)
 {
-	__waiting_to_speak(philo);
 	pthread_mutex_lock(philo->data->the_voice);
 	if (philo->data->blood_switch == 0)
 	{
 		philo->data->blood_switch++;
 		philo->status = DEAD;
-		printf("%lld %d died\n",
+		printf("%03lld %d died\n",
 		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
 	}
 	pthread_mutex_unlock(philo->data->the_voice);
