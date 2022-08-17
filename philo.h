@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 20:42:29 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 22:00:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_data{	// neeed to add a time to think
 
 typedef struct s_philo{
 	int				id;
-	int				status;
+	int				status; //useless
 	long long		hp;
 	int				ttthink;
 	int				nbr_meal;
@@ -138,6 +138,7 @@ int			__sleep(t_philo *philo);
 
 /******** voice ********/
 int		__voice(t_philo *philo, char *message);
+int	__add_to_rqrmt(t_philo *philo);
 //int	__voice(t_philo *philo, int time_to, char *message);
 void		__voice_of_death(t_philo *philo);
 int			__lifestatus(t_philo *philo, int time_to);
@@ -184,5 +185,6 @@ void		 __free_setnull(void **malloc_elem); // not sure it is usefull
 /************
  * essayer de prendre une fourchette a la fois.(dansle waiting to eat ... )
  * essayer de mettre le get_time directement dans la structure du philosophe.
+ * le philo status semble ne servir a rien
  * ****/
 

@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 20:37:36 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 22:03:24 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	__launch_philo(t_data *data, int nbr)
 			NULL,\
 			&__routine, (void *)&data->philo_tab[i]))
 				return (i);
+			usleep(0);
 		}
 	}
 
@@ -46,21 +47,19 @@ int	__join_philo(t_data *data, int nbr)
 int	main (int ac, char **av)
 {
 	t_data		data;
-	//long long int	start;
 
-	//start = __get_time();
 	if (__init_data(ac -1, av + 1, &data) == -1)
 		return (-1);
-	//printf("after __init_data time = %03lld\n", __get_time() - start);
 	if (__set_table(&data) == -1)
 		return (-1);
-	//printf("after __set_table time = %03lld\n", __get_time()- start);
-	__launch_philo(&data, data.philo_nbr);
-	//printf("after __launch philo time = %03lld\n", __get_time() - start);
-	__join_philo(&data, data.philo_nbr);
-	__ultimate_free(&data);
+	//__visual(&data, ALL);
+	if (data.eat_rqrmt != 0)
+	{
+		__launch_philo(&data, data.philo_nbr);
+		__join_philo(&data, data.philo_nbr);
+		__ultimate_free(&data);
+	}
 	return (0);
 }
 
-	//__visual(&data, ALL);
 

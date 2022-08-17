@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/15 19:51:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/17 21:54:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@ int	__init_data(int ac, char **av, t_data *data)
 	data->blood_switch = 0;
 	data->table_set = NULL;
 	data->philo_tab = NULL;
+	data->the_voice = NULL;
+	data->rqrmt_switch = 0;
 	return (0);
 }
