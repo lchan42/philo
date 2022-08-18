@@ -6,72 +6,33 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 14:58:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 17:33:49 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <pthread.h>
 
-#define INT_MAX 2147483647
-#define	INIT_SIZE 3
-#define	FREE_FUNK 3
-#define TT_THINK 1
-#define HP_LOSS 500
-#define FORK_MESS "has taken a fork\n"
-#define EAT_MESS "is eating\n"
-#define SLEEP_MESS "is sleeping\n"
-#define THINK_MESS "is thinking\n"
-#define DEATH_MESS "died\n"
+# define INT_MAX 2147483647
+# define INIT_SIZE 3
+# define FREE_FUNK 3
+# define TT_THINK 1
+# define HP_LOSS 500
+# define FORK_MESS "has taken a fork\n"
+# define EAT_MESS "is eating\n"
+# define SLEEP_MESS "is sleeping\n"
+# define THINK_MESS "is thinking\n"
+# define DEATH_MESS "died\n"
 
-// #define FORK_MESS "has taken a fork\n"
-// #define EAT_MESS "is eating\n"
-// #define SLEEP_MESS "is sleeping\n"
-// #define THINK_MESS "is thinking\n"
-// #define DEATH_MESS "died\n"
-
-/*************************************
- * autorised functions:
- * void *memset(void *s, int c, size_t n);
- * 						fill s with c on n bytes
- * int usleep(useconds_t usec);
- * 						returns 0 on success.  On error, -1 is  returned, with errno set to indicate the cause of the error.
- * int gettimeofday(struct timeval *tv, struct timezone *tz);
- * 						The tv argument is a struct timeval (as specified in <sys/time.h>):
- * 						struct timeval
- * 						{
- * 							time_t      tv_sec;     // seconds
- * 							suseconds_t tv_usec;    // microseconds
- * 						};
- * 						return 0 for success, or -1 for failure (in which case errno is set appropriately).
-
- * int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
- * to check into a mutex structure philo.rgt.__data.__lock
- * 		https://stackoverflow.com/questions/30585375/what-is-the-type-of-pthread-mutex-t
- * valgrind --tool=helgrind to check race conditions
-************************************/
-
-
- /*****
-  * timestamp_in_ms X has taken a fork
-  * timestamp_in_ms X is eating
-  * timestamp_in_ms X is sleeping
-  * timestamp_in_ms X is thinking
-  * timestamp_in_ms X died
-  * philo.rgt.__data.__lock
- ****/
-
-
-
-typedef struct s_data{	// neeed to add a time to think
+typedef struct s_data{
 	int				philo_nbr;
 	int				ttdie;
 	int				tteat;
@@ -87,14 +48,13 @@ typedef struct s_data{	// neeed to add a time to think
 
 typedef struct s_philo{
 	int				id;
-	int				status; //useless
 	long long		hp;
 	int				ttthink;
 	int				nbr_meal;
 	int				obj_meal;
 	pthread_t		ph_thread;
 	pthread_mutex_t	*rgt;
- 	pthread_mutex_t	*lft;
+	pthread_mutex_t	*lft;
 	t_data			*data;
 }	t_philo;
 
@@ -107,97 +67,66 @@ enum e_err_parsing{
 	TIME_SET_ERR
 };
 
-enum e_status{
-	WAITING,
-	ALIVE,
-	DEAD,
-	EAT,
-	SLEEP,
-	THINK
-};
+/******** ph_init_data ********/
+int			__init_data(int ac, char **av, t_data *data);
 
+/******** ph_set_table ********/
+int			__set_table(t_data *data);
+
+/******** ph_routine ********/
+void		*__routine(void *philo_void);
+
+/******** ph_eat ********/
+int			__eat(t_philo *philo);
+
+/******** ph_mutexer ********/
+int			__lifestatus(t_philo *philo, int time_to);
+int			__voice(t_philo *philo, char *message);
+void		__voice_of_death(t_philo *philo);
+int			__add_to_rqrmt(t_philo *philo);
+
+/******** ph_utils ********/
+int			__is_even_nbr(int n);
+int			__abs_val(int n);
+long long	__get_time(void);
+long long	__voice_time(long long start, long long now);
+
+/******** ph_print_mess ********/
+void		__print_mess(int start_t, int id, char *mess);
+
+/******** ph_free ********/
+void		__table_free(t_data *data);
+void		__ultimate_free(t_data *data);
+void		__free_setnull(void **malloc_elem); // not sure it is usefull
+
+/******** visual ********/
 enum e_visual{ //have to delete this enum afterwards
 	ALL = -1,
 	DATA,
 	TABLE_SET,
 	PHILO_TAB
 };
-
-/******** ********/
-
-/******** visual ********/
 void		__visual_print_data(t_data *data, int nbr);
 void		__visual(t_data *data, int opt);
 
-/******** main struct init ********/
-int			__init_data(int ac, char **av, t_data *data);
-int			__set_starting_time(/*t_data *data*/long long *start_time);
-
-/******** table set ********/
-int			__set_table(t_data *data);
-
-/******** philo routine ********/
-void		*__routine(void *philo_void);
-
-/******** routune ********/
-int			__eat(t_philo *philo);
-int			__sleep(t_philo *philo);
-
-/******** voice ********/
-int			__voice(t_philo *philo, char *message);
-int			__add_to_rqrmt(t_philo *philo);
-//int		__voice(t_philo *philo, int time_to, char *message);
-void		__voice_of_death(t_philo *philo);
-int			__lifestatus(t_philo *philo, int time_to);
-
-/******** utils ********/
-int			__is_even_nbr(int n);
-int			__abs_val(int n);
-void		__print_mess(int start_t, int id, char *mess);
-
-		//utils for time mgmt
-long long	__get_time();
-long long	__voice_time(long long start, long long now);
-int			__waiting_to_speak(t_philo *philo);
-
-/******** free functions ********/
-void		__table_free(t_data *data);
-void		__ultimate_free(t_data *data);
-void		 __free_setnull(void **malloc_elem); // not sure it is usefull
-
 #endif
+/*************************************
+ * autorised functions:
+ * void *memset(void *s, int c, size_t n);
+ * 						fill s with c on n bytes
+ * int usleep(useconds_t usec);
+ * 		returns 0 on success.  On error, -1 is  returned, with errno set to indicate the cause of the error.
+ * int gettimeofday(struct timeval *tv, struct timezone *tz);
+ * 						The tv argument is a struct timeval (as specified in <sys/time.h>):
+ * 						struct timeval
+ * 						{
+ * 							time_t      tv_sec;     // seconds
+ * 							suseconds_t tv_usec;    // microseconds
+ * 						};
+ * 						return 0 for success, or -1 for failure (in which case errno is set appropriately).
 
-
-// 12/08 objf -> infinit philo loop taking fork
-// I m not sure about where to put my thread. in Philo struct or main struct?
-
-// after coffee : make a visual for forks and philosophers (see who is holding who s fork)DONE
-
-//figure out exactly how threads are working;
-//try to figure out how to deal with errors from __routine.
-
-
-
-
-// convert every value in long long (creat a val called bigi)
-
-
-//
-/**************************
- * il faut changer check eat rqmt. il doit etre placer dans les mutex;
- * DONE la variable prev_lunch ne sert a rien
- * DONE		la fonction the voice semble pouvoir etre faite avec une seule fonction __voice(t_philo *philo, char *message)
- * il semble que le time of death est incorrect
- * reduire le nombre de fonction
- * ************************/
-
-
-/************
- * essayer de prendre une fourchette a la fois.(dansle waiting to eat ... )
- * essayer de mettre le get_time directement dans la structure du philosophe.
- * le philo status semble ne servir a rien
- * ****/
-
-//add sleep mess before dropping fork
-//use put str and not printf
-//
+ * int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
+ * to check into a mutex structure philo.rgt.__data.__lock
+ * 		https://stackoverflow.com/questions/30585375/what-is-the-type-of-pthread-mutex-t
+ * valgrind --tool=helgrind to check race conditions
+************************************/

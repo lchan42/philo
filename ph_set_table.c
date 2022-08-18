@@ -6,10 +6,9 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/18 11:43:53 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 17:25:08 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "philo.h"
 
@@ -52,7 +51,6 @@ int	__set_philo(t_data *data, t_philo *philo, int index)
 	else
 		i = index + 1;
 	philo->id = index;
-	philo->status = WAITING;
 	philo->hp = data->ttdie * 1000;
 	philo->ttthink = __abs_val(data->tteat - data->ttsleep) + TT_THINK;
 	philo->nbr_meal = 0;
@@ -68,7 +66,7 @@ int	__init_philo(t_data *data, int nbr)
 	int	index;
 
 	index = -1;
-	data->philo_tab = (t_philo*) malloc(sizeof(t_philo) * nbr);
+	data->philo_tab = (t_philo *) malloc(sizeof(t_philo) * nbr);
 	if (!data->philo_tab)
 		return (-1);
 	while (++index < nbr)
@@ -85,11 +83,9 @@ int	__set_table(t_data *data)
 	__set_table[0] = &__init_table;
 	__set_table[1] = &__init_mutex;
 	__set_table[2] = &__init_philo;
-
 	i = 0;
 	while (i < INIT_SIZE)
 		if (__set_table[i++](data, data->philo_nbr) == -1)
 			return (i);
 	return (0);
 }
-

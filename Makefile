@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/08/15 15:13:15 by lchan            ###   ########.fr        #
+#    Updated: 2022/08/18 17:14:09 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS	=	ph_main.c\
 			ph_routine.c\
 			ph_mutexer.c\
 			ph_eat.c\
+			ph_print_mess.c\
 			ph_free.c\
 			ph_utils.c\
 			ph_visual.c

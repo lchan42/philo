@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 21:54:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 17:16:42 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static long int	ft_atol(const char *str)
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 			str++;
 	if ((*str == '+' || *str == '-') && str++)
-			if (*(str - 1) == '-')
-					sign = -sign;
+		if (*(str - 1) == '-')
+				sign = -sign;
 	while (*str >= '0' && *str <= '9')
 	{
-			result = result * 10 + *str - '0';
-			str++;
+		result = result * 10 + *str - '0';
+		str++;
 	}
 	return (result * (long int)sign);
 }
@@ -70,15 +70,15 @@ static int	__is_error(int error_code)
 	}
 }
 
-int __set_starting_time(/*t_data *data*/long long *start_time)
+int	__set_starting_time(long long *start_time)
 {
-	struct timeval c_time;
+	struct timeval	c_time;
 
 	if (gettimeofday(&c_time, NULL) == -1)
 		return (-1);
 	else
 	{
-		*start_time = (c_time.tv_sec *1000 + c_time.tv_usec / 1000);
+		*start_time = (c_time.tv_sec * 1000 + c_time.tv_usec / 1000);
 		return (0);
 	}
 }
@@ -89,7 +89,7 @@ int	__init_data(int ac, char **av, t_data *data)
 	int	*struct_address;
 
 	i = -1;
-	struct_address = (int*)data;
+	struct_address = (int *)data;
 	if (ac < 4 || ac > 5)
 		return (__is_error(INVALID_NBR_ARG));
 	while (++i < ac)
