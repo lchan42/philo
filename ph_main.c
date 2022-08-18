@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:04 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 17:27:02 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 18:39:08 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 {
 	t_data		data;
 
-	if (__init_data(ac -1, av + 1, &data) == -1)
+	if (__init_data(ac -1, av + 1, &data) == -1 || data.ttdie == 0)
 		return (-1);
 	if (__set_table(&data) == -1)
 		return (-1);

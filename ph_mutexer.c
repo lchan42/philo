@@ -6,15 +6,15 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 17:20:22 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 18:35:49 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	__lifestatus(t_philo *philo, int time_to)
+int	__lifestatus(t_philo *philo, long long int time_to)
 {
-	int	time_to_ms;
+	long long int	time_to_ms;
 
 	time_to_ms = time_to * 1000;
 	if (time_to_ms >= philo->hp)

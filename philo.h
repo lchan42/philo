@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 17:33:49 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 18:35:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		*__routine(void *philo_void);
 int			__eat(t_philo *philo);
 
 /******** ph_mutexer ********/
-int			__lifestatus(t_philo *philo, int time_to);
+int			__lifestatus(t_philo *philo, long long int time_to);
 int			__voice(t_philo *philo, char *message);
 void		__voice_of_death(t_philo *philo);
 int			__add_to_rqrmt(t_philo *philo);
