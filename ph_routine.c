@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 19:31:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 21:49:10 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 11:45:50 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void	*__routine(void *philo)
 
 	if (!__is_even_nbr(((t_philo *)philo)->id + 1))
 	{
+		//printf("philo not even are -> %d\n", ((t_philo *)philo)->id + 1);
 		if (((t_philo *)philo)->id == 0)
 			((t_philo *)philo)->data->start_time = __get_time();
-		((t_philo *)philo)->hp -= 10;
-		usleep(10);
+		((t_philo *)philo)->hp -= 1000;
+		usleep(1000);
 	}
 	while (1)
 	{

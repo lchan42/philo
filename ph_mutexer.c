@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 22:00:32 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 11:33:23 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int	__voice(t_philo *philo, char *message)
 	}
 	else
 		ret = -1;
+	//printf("voice mutex unlocked by (philo->%d\n)", philo->id + 1);
 	pthread_mutex_unlock(philo->data->the_voice);
+
 	return (ret);
 }
 
@@ -83,6 +85,7 @@ void	__voice_of_death(t_philo *philo)
 		printf("%03lld %d died\n",
 		__voice_time(philo->data->start_time, __get_time()), philo->id + 1);
 	}
+	//printf("death mutex unlocked by (philo->%d\n)", philo->id + 1);
 	pthread_mutex_unlock(philo->data->the_voice);
 }
 

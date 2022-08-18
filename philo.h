@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/17 22:00:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 11:43:23 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ enum e_visual{ //have to delete this enum afterwards
 /******** ********/
 
 /******** visual ********/
-void	__visual_print_data(t_data *data, int nbr);
-void	__visual(t_data *data, int opt);
+void		__visual_print_data(t_data *data, int nbr);
+void		__visual(t_data *data, int opt);
 
 /******** main struct init ********/
 int			__init_data(int ac, char **av, t_data *data);
@@ -137,14 +137,15 @@ int			__eat(t_philo *philo);
 int			__sleep(t_philo *philo);
 
 /******** voice ********/
-int		__voice(t_philo *philo, char *message);
-int	__add_to_rqrmt(t_philo *philo);
-//int	__voice(t_philo *philo, int time_to, char *message);
+int			__voice(t_philo *philo, char *message);
+int			__add_to_rqrmt(t_philo *philo);
+//int		__voice(t_philo *philo, int time_to, char *message);
 void		__voice_of_death(t_philo *philo);
 int			__lifestatus(t_philo *philo, int time_to);
 
 /******** utils ********/
 int			__is_even_nbr(int n);
+int			__abs_val(int n);
 		//utils for time mgmt
 long long	__get_time();
 long long	__voice_time(long long start, long long now);
