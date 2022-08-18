@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 11:43:23 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/18 14:58:16 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,18 @@
 #define	INIT_SIZE 3
 #define	FREE_FUNK 3
 #define TT_THINK 1
-#define FORK_MESS "has taken a fork"
-#define EAT_MESS "is eating"
-#define SLEEP_MESS "is sleeping"
-#define THINK_MESS "is thinking"
-#define DEATH_MESS "died"
+#define HP_LOSS 500
+#define FORK_MESS "has taken a fork\n"
+#define EAT_MESS "is eating\n"
+#define SLEEP_MESS "is sleeping\n"
+#define THINK_MESS "is thinking\n"
+#define DEATH_MESS "died\n"
+
+// #define FORK_MESS "has taken a fork\n"
+// #define EAT_MESS "is eating\n"
+// #define SLEEP_MESS "is sleeping\n"
+// #define THINK_MESS "is thinking\n"
+// #define DEATH_MESS "died\n"
 
 /*************************************
  * autorised functions:
@@ -146,6 +153,8 @@ int			__lifestatus(t_philo *philo, int time_to);
 /******** utils ********/
 int			__is_even_nbr(int n);
 int			__abs_val(int n);
+void		__print_mess(int start_t, int id, char *mess);
+
 		//utils for time mgmt
 long long	__get_time();
 long long	__voice_time(long long start, long long now);
@@ -189,3 +198,6 @@ void		 __free_setnull(void **malloc_elem); // not sure it is usefull
  * le philo status semble ne servir a rien
  * ****/
 
+//add sleep mess before dropping fork
+//use put str and not printf
+//
