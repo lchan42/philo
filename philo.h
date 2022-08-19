@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/19 14:26:10 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/19 14:32:48 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,6 @@ void		__visual(t_data *data, int opt);
 ************************************/
 
 
-//corriger l erreur avec valgrind de la cmd suivante./philo 4 310 200 200
+//corriger les erreur avec valgrind de les cmd suivante
+//		./philo 4 310 200 200 un philo meurt  --> j ai une erreur de racing ? 
+//		./philo 4 2147483647 200 200 personne ne meurt --> j ai un philo qui meur direct au demarrage....
