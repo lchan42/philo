@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 17:41:57 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/19 13:08:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	__pick_fork(t_philo *philo)
 		__waiting_to_eat(philo, philo->lft);
 		return (0);
 	}
-	return(-1);
+	return (-1);
 }
 
 void	__drop_fork(t_philo *philo)

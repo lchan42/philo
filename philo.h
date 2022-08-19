@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 18:35:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/19 14:26:10 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,3 +130,6 @@ void		__visual(t_data *data, int opt);
  * 		https://stackoverflow.com/questions/30585375/what-is-the-type-of-pthread-mutex-t
  * valgrind --tool=helgrind to check race conditions
 ************************************/
+
+
+//corriger l erreur avec valgrind de la cmd suivante./philo 4 310 200 200
