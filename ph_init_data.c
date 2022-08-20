@@ -6,16 +6,16 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:02:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 17:16:42 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 15:38:51 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static long int	ft_atol(const char *str)
+static long long int	ft_atol(const char *str)
 {
-	int			sign;
-	long int	result;
+	int				sign;
+	long long int	result;
 
 	sign = 1;
 	result = 0;
@@ -29,7 +29,7 @@ static long int	ft_atol(const char *str)
 		result = result * 10 + *str - '0';
 		str++;
 	}
-	return (result * (long int)sign);
+	return (result * (long long int)sign);
 }
 
 static int	__entrycheck(char *str)
@@ -44,7 +44,7 @@ static int	__entrycheck(char *str)
 	while (str[++i])
 		if (str[i] < '0' || str[i] > '9')
 			return (NOT_DIGIT);
-	if (i > 11 || ft_atol(str) > INT_MAX)
+	if (i > 11 || ft_atol(str) > 2147483647)
 		return (OVERFLOW);
 	return (0);
 }

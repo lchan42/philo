@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/19 13:08:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 15:59:36 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,20 @@ int	__pick_fork(t_philo *philo)
 	}
 	else if (__is_even_nbr(philo->id + 1))
 	{
-		__waiting_to_eat(philo, philo->lft);
-		__waiting_to_eat(philo, philo->rgt);
+		if (__waiting_to_eat(philo, philo->lft) == -1)
+			return (-1);
+		if (__waiting_to_eat(philo, philo->rgt) == -1
+			&& pthread_mutex_unlock(philo->lft))
+			return (-1);
 		return (0);
 	}
 	else
 	{
-		__waiting_to_eat(philo, philo->rgt);
-		__waiting_to_eat(philo, philo->lft);
+		if (__waiting_to_eat(philo, philo->rgt) == -1)
+			return (-1);
+		if (__waiting_to_eat(philo, philo->lft) == -1
+			&& pthread_mutex_unlock(philo->rgt))
+			return (-1);
 		return (0);
 	}
 	return (-1);
@@ -83,7 +89,8 @@ int	__eat(t_philo *philo)
 		__drop_fork(philo);
 		return (-1);
 	}
-	((t_philo *)philo)->hp = ((t_philo *)philo)->data->ttdie * 1000;
+	((t_philo *)philo)->hp
+		= ((long long int)((t_philo *)philo)->data->ttdie) * 1000;
 	ret = __lifestatus(philo, philo->data->tteat);
 	if (ret == 0)
 		philo->nbr_meal++;

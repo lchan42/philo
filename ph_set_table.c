@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:05:45 by luc_chan          #+#    #+#             */
-/*   Updated: 2022/08/18 17:25:08 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 15:38:35 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	__set_philo(t_data *data, t_philo *philo, int index)
 	else
 		i = index + 1;
 	philo->id = index;
-	philo->hp = data->ttdie * 1000;
+	philo->hp = ((long long int)data->ttdie * 1000);
 	philo->ttthink = __abs_val(data->tteat - data->ttsleep) + TT_THINK;
 	philo->nbr_meal = 0;
 	philo->obj_meal = data->eat_rqrmt;

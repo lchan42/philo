@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/19 14:32:48 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 15:43:11 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
-# define INT_MAX 2147483647
+//# define INT_MAX 2147483647
 # define INIT_SIZE 3
 # define FREE_FUNK 3
 # define TT_THINK 1
@@ -133,5 +134,5 @@ void		__visual(t_data *data, int opt);
 
 
 //corriger les erreur avec valgrind de les cmd suivante
-//		./philo 4 310 200 200 un philo meurt  --> j ai une erreur de racing ? 
+//		./philo 4 310 200 200 un philo meurt  --> j ai une erreur de racing ?
 //		./philo 4 2147483647 200 200 personne ne meurt --> j ai un philo qui meur direct au demarrage....
