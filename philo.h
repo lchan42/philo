@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/20 18:52:06 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 20:01:37 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@
 # include <pthread.h>
 # include <limits.h>
 
-//# define INT_MAX 2147483647
 # define INIT_SIZE 3
 # define FREE_FUNK 3
 # define TT_THINK 1
-# define HP_LOSS 700
-# define HP_USLEEP 70
+# define HP_LOSS 500
+# define HP_USLEEP 50
 
 # define FORK_MESS "has taken a fork\n"
 # define EAT_MESS "is eating\n"
@@ -43,6 +42,7 @@ typedef struct s_data{
 	int				eat_rqrmt;
 	int				blood_switch;
 	int				rqrmt_switch;
+	int				hp_loss;
 	long long		start_time;
 	pthread_mutex_t	*table_set;
 	pthread_mutex_t	*the_voice;

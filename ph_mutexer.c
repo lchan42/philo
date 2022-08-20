@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/20 18:05:21 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 20:06:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	__voice_of_death(t_philo *philo)
 	if (philo->data->blood_switch == 0)
 	{
 		philo->data->blood_switch++;
-		__print_mess(((int)(__get_time() - philo->data->start_time)),
+		__print_mess(((int)(__get_time() - philo->data->start_time )),
 			philo->id + 1,
 			DEATH_MESS);
 	}
