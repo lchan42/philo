@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:11:03 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/20 15:59:36 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 18:28:42 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	__waiting_to_eat(t_philo *philo, pthread_mutex_t *mutex)
 {
+
 	while (1)
 	{
 		if (philo->hp > 0 && mutex->__data.__lock == 0)
@@ -21,6 +22,7 @@ int	__waiting_to_eat(t_philo *philo, pthread_mutex_t *mutex)
 			pthread_mutex_lock(mutex);
 			__voice(philo, FORK_MESS);
 			return (0);
+
 		}
 		else
 		{
@@ -30,9 +32,21 @@ int	__waiting_to_eat(t_philo *philo, pthread_mutex_t *mutex)
 				__voice_of_death(philo);
 				return (-1);
 			}
-			usleep(HP_LOSS - 50);
+			usleep(HP_LOSS - HP_USLEEP);
 		}
 	}
+}
+
+int	__pick_fork_odd(t_philo *philo)
+{
+		if (__waiting_to_eat(philo, philo->rgt) == -1)
+			return (-1);
+		if (__waiting_to_eat(philo, philo->lft) == -1)
+		{
+			pthread_mutex_unlock(philo->rgt);
+			return (-1);
+		}
+		return (0);
 }
 
 int	__pick_fork(t_philo *philo)
@@ -42,25 +56,21 @@ int	__pick_fork(t_philo *philo)
 		__voice(philo, FORK_MESS);
 		usleep(philo->hp);
 		__voice_of_death(philo);
+		return (-1);
 	}
 	else if (__is_even_nbr(philo->id + 1))
 	{
 		if (__waiting_to_eat(philo, philo->lft) == -1)
 			return (-1);
-		if (__waiting_to_eat(philo, philo->rgt) == -1
-			&& pthread_mutex_unlock(philo->lft))
+		if (__waiting_to_eat(philo, philo->rgt) == -1)
+		{
+			pthread_mutex_unlock(philo->lft);
 			return (-1);
+		}
 		return (0);
 	}
 	else
-	{
-		if (__waiting_to_eat(philo, philo->rgt) == -1)
-			return (-1);
-		if (__waiting_to_eat(philo, philo->lft) == -1
-			&& pthread_mutex_unlock(philo->rgt))
-			return (-1);
-		return (0);
-	}
+		return (__pick_fork_odd(philo));
 	return (-1);
 }
 
@@ -68,13 +78,17 @@ void	__drop_fork(t_philo *philo)
 {
 	if (__is_even_nbr(philo->id + 1))
 	{
-		pthread_mutex_unlock(philo->lft);
-		pthread_mutex_unlock(philo->rgt);
+		if (philo->lft->__data.__lock == 1)
+			pthread_mutex_unlock(philo->lft);
+		if (philo->rgt->__data.__lock == 1)
+			pthread_mutex_unlock(philo->rgt);
 	}
 	else
 	{
-		pthread_mutex_unlock(philo->rgt);
-		pthread_mutex_unlock(philo->lft);
+		if (philo->rgt->__data.__lock == 1)
+			pthread_mutex_unlock(philo->rgt);
+		if (philo->lft->__data.__lock == 1)
+			pthread_mutex_unlock(philo->lft);
 	}
 }
 

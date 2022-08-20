@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:54:34 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/18 18:35:49 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 18:05:21 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	__waiting_to_speak(t_philo *philo)
 				__voice_of_death(philo);
 				return (-1);
 			}
-			usleep(HP_LOSS - 50);
+			usleep(HP_LOSS - HP_USLEEP);
 		}
 	}
 }

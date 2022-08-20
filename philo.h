@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:10:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/08/20 15:43:11 by lchan            ###   ########.fr       */
+/*   Updated: 2022/08/20 18:52:06 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 # define INIT_SIZE 3
 # define FREE_FUNK 3
 # define TT_THINK 1
-# define HP_LOSS 500
+# define HP_LOSS 700
+# define HP_USLEEP 70
+
 # define FORK_MESS "has taken a fork\n"
 # define EAT_MESS "is eating\n"
 # define SLEEP_MESS "is sleeping\n"
